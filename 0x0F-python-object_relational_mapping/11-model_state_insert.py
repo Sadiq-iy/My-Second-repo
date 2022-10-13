@@ -16,11 +16,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    found = False
-    for state in session.query(State):
-        if state.name == argv[4]:
-            print("{}".format(state.id))
-            found = True
-            break
-    if found is False:
-        print("Not found")
+    new_state = State(name="Louisiana")
+    session.add(new_state)
+    session.commit()
+
+    print(new_state.id)
